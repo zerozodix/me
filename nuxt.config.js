@@ -3,11 +3,12 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  ssr: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - me',
-    title: 'me',
+    titleTemplate: '%s - Nuttapon',
+    title: `Me`,
     htmlAttrs: {
       lang: 'en'
     },
@@ -58,7 +59,7 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
-        }
+        },
       }
     }
   },

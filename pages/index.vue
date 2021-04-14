@@ -1,89 +1,55 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
+  <v-card flat>
+    <v-parallax height="550" class="py-10" src="/images/godzilla.jpg">
+      <v-row align="center" justify="space-around">
+        <v-avatar size="128">
+          <v-img
+            src="https://avatars.githubusercontent.com/u/10502651"
+            alt="Ken Noize"
+          ></v-img>
+        </v-avatar>
+      </v-row>
+      <v-row class="py-5" align="center" justify="center">
+        <v-col cols="12">
+          <v-row align="center" justify="center">
+            <h1>Hi !</h1>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row class="py-5" align="center" justify="center">
+        <v-col cols="12">
+          <p class="text-center">My name is Ken</p>
+          <p class="text-center">I'm lazy developer</p>
+        </v-col>
+      </v-row>
+
+      <v-row class="py-5" align="center" justify="center">
+        <v-col cols="12">
+          <p class="text-center">
+            <v-btn fab dark href="https://github.com/zerozodix">
+              <v-icon x-large>mdi-github</v-icon>
+            </v-btn>
+            <v-btn fab dark href="https://www.facebook.com/kentanew">
+              <v-icon x-large>mdi-facebook</v-icon>
+            </v-btn>
           </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+        </v-col>
+      </v-row>
+    </v-parallax>
+
+    <v-row class="py-5" align="center" justify="center">
+      <v-col cols="12">
+        <h1 class="text-center">Adventure Log</h1>
+      </v-col>
+    </v-row>
+
+    <MeAdventureLog></MeAdventureLog>
+  </v-card>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
 
-export default {
-  components: {
-    Logo,
-    VuetifyLogo
-  }
-}
+@Component
+export default class IndexPage extends Vue {}
 </script>
