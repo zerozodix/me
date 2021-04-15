@@ -33,6 +33,7 @@
       </v-container>
     </v-main>
     <v-footer>
+      <v-spacer></v-spacer>
       <v-btn fab dark depressed x-small href="https://github.com/zerozodix">
         <v-icon>mdi-github</v-icon>
       </v-btn>

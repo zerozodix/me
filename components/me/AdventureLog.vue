@@ -9,8 +9,8 @@
         <v-timeline-item
           v-for="(item, i) in items"
           :key="i"
-          :color="item.color"
-          :icon="item.icon"
+          :color="item.current ? item.color : '#808080'"
+          :icon="item.current ? 'mdi-map-marker-circle' : 'mdi-lock-open'"
           large
         >
           <template v-slot:opposite>
@@ -19,14 +19,90 @@
               v-text="item.year"
             ></span>
           </template>
-          <div class="py-4">
-            <h2 :class="`headline font-weight-light mb-4 ${item.color}--text`">
+          <v-row class="my-2">
+            <h2 :class="`headline font-weight-bold mb-4 ${item.color}--text`">
               {{ item.title }}
             </h2>
-            <div>
+            <div class="subtitle-1">
               {{ item.description }}
             </div>
-          </div>
+          </v-row>
+          <v-row class="my-2">
+            <v-col cols="12" sm="6" lg="4" md="4" xl="4" class="py-0">
+              <span
+                :class="`subtitle-1 font-weight-light mb-4 ${item.color}--text`"
+              >
+                Language
+              </span>
+            </v-col>
+            <v-col cols="12" sm="6" lg="8" md="8" xl="8" class="pt-0">
+              <v-avatar
+                v-for="tool in item.lang"
+                :key="tool.tooltips"
+                size="40"
+              >
+                <v-img :src="tool.src"></v-img>
+                <template> </template>
+              </v-avatar>
+            </v-col>
+          </v-row>
+          <v-row class="my-2">
+            <v-col cols="12" sm="6" lg="4" md="4" xl="4" class="py-0">
+              <span
+                :class="`subtitle-1 font-weight-light mb-4 ${item.color}--text`"
+              >
+                Framework
+              </span>
+            </v-col>
+            <v-col cols="12" sm="6" lg="8" md="8" xl="8" class="pt-0">
+              <v-avatar
+                v-for="tool in item.framework"
+                :key="tool.tooltips"
+                size="40"
+              >
+                <v-img :src="tool.src"></v-img>
+                <template> </template>
+              </v-avatar>
+            </v-col>
+          </v-row>
+          <v-row class="my-2">
+            <v-col cols="12" sm="6" lg="4" md="4" xl="4" class="py-0">
+              <span
+                :class="`subtitle-1 font-weight-light mb-4 ${item.color}--text`"
+              >
+                Database
+              </span>
+            </v-col>
+            <v-col cols="12" sm="6" lg="8" md="8" xl="8" class="pt-0">
+              <v-avatar
+                v-for="tool in item.database"
+                :key="tool.tooltips"
+                size="40"
+              >
+                <v-img :src="tool.src"></v-img>
+                <template> </template>
+              </v-avatar>
+            </v-col>
+          </v-row>
+          <v-row class="my-2">
+            <v-col cols="12" sm="6" lg="4" md="4" xl="4" class="py-0">
+              <span
+                :class="`subtitle-1 font-weight-light mb-4 ${item.color}--text`"
+              >
+                ETC Tools
+              </span>
+            </v-col>
+            <v-col cols="12" sm="6" lg="8" md="8" xl="8" class="pt-0">
+              <v-avatar
+                v-for="tool in item.toolsIcon"
+                :key="tool.tooltips"
+                size="40"
+              >
+                <v-img :src="tool.src"></v-img>
+                <template> </template>
+              </v-avatar>
+            </v-col>
+          </v-row>
         </v-timeline-item>
       </v-timeline>
     </v-col>
@@ -37,56 +113,231 @@
 import { Vue, Component } from "vue-property-decorator";
 
 interface IconDetail {
-  icon: string;
+  src: string;
   tooltips: string;
 }
 
 interface Adventure {
   color: string;
   year: number;
-  icon: string;
+  current: boolean;
   title?: string;
   description?: string;
   toolsIcon?: IconDetail[];
+  lang?: IconDetail[];
+  framework?: IconDetail[];
+  database?: IconDetail[];
 }
 
 @Component
 export default class AdventureLog extends Vue {
   items: Adventure[] = [
     {
+      current: true,
       color: "cyan",
       year: 2019,
-      icon: "mdi-star",
       title: "Krungthai Bank",
-      description: "test",
+      description: "",
+      lang: [
+        {
+          src: "/images/skills/typescript.svg",
+          tooltips: "Typescript",
+        },
+        {
+          src: "/images/skills/c_sharp.svg",
+          tooltips: "C#",
+        },
+        {
+          src: "/images/skills/cpp.svg",
+          tooltips: "C++",
+        },
+        {
+          src: "/images/skills/golang.svg",
+          tooltips: "GoLang",
+        },
+        {
+          src: "/images/skills/java.svg",
+          tooltips: "Java",
+        },
+      ],
+      framework: [
+        {
+          src: "/images/skills/vue.svg",
+          tooltips: "Vue.js",
+        },
+        {
+          src: "/images/skills/dotnet.svg",
+          tooltips: ".Net Framework",
+        },
+      ],
+      database: [
+        {
+          src: "/images/skills/microsoft_sql_server.jpg",
+          tooltips: "MS Sql server",
+        },
+        {
+          src: "/images/skills/oracle_db.png",
+          tooltips: "Oracle Database",
+        },
+      ],
+      toolsIcon: [
+        {
+          src: "/images/skills/IIS.svg",
+          tooltips: "IIS",
+        },
+        {
+          src: "/images/skills/apache_kafka.png",
+          tooltips: "Apache Kafka",
+        },
+        {
+          src: "/images/skills/kubernetes.svg",
+          tooltips: "K8S",
+        },
+        {
+          src: "/images/skills/microsoft_sql_server.jpg",
+          tooltips: "MS Sql server",
+        },
+        {
+          src: "/images/skills/nginx.svg",
+          tooltips: "nginx",
+        },
+        {
+          src: "/images/skills/redis.png",
+          tooltips: "Redis",
+        },
+      ],
     },
     {
-      color: "green",
+      current: false,
+      color: "indigo",
       year: 2016,
-      icon: "mdi-star",
       title: "Kiatnakin Bank",
-      description: "test",
+      description: "",
+      lang: [
+        {
+          src: "/images/skills/c_sharp.svg",
+          tooltips: "C#",
+        },
+        {
+          src: "/images/skills/java.svg",
+          tooltips: "Java",
+        },
+      ],
+      framework: [
+        {
+          src: "/images/skills/dotnet.svg",
+          tooltips: ".Net Framework",
+        },
+      ],
+      database: [
+        {
+          src: "/images/skills/microsoft_sql_server.jpg",
+          tooltips: "MS Sql server",
+        },
+      ],
+      toolsIcon: [
+        {
+          src: "/images/skills/IIS.svg",
+          tooltips: "IIS",
+        },
+      ],
     },
     {
-      color: "pink",
-      year: 2015,
-      icon: "mdi-star",
-      title: "Krungsri Bank",
-      description: "test",
-    },
-    {
+      current: false,
       color: "amber",
-      year: 2012,
-      icon: "mdi-star",
-      title: "Ecart Studio",
-      description: "test",
+      year: 2015,
+      title: "Krungsri Bank",
+      description: "",
+      lang: [
+        {
+          src: "/images/skills/c_sharp.svg",
+          tooltips: "C#",
+        },
+      ],
+      framework: [
+        {
+          src: "/images/skills/dotnet.svg",
+          tooltips: ".Net Framework",
+        },
+      ],
+      database: [
+        {
+          src: "/images/skills/microsoft_sql_server.jpg",
+          tooltips: "MS Sql server",
+        },
+      ],
+      toolsIcon: [
+        {
+          src: "/images/skills/IIS.svg",
+          tooltips: "IIS",
+        },
+      ],
     },
     {
+      current: false,
+      color: "blue",
+      year: 2012,
+      title: "Ecartstudio",
+      description: "",
+      lang: [
+        {
+          src: "/images/skills/coffeescript.jpg",
+          tooltips: "CoffeeScript",
+        },
+        {
+          src: "/images/skills/c_sharp.svg",
+          tooltips: "C#",
+        },
+      ],
+      framework: [
+        {
+          src: "/images/skills/dotnet.svg",
+          tooltips: ".Net Framework",
+        },
+      ],
+      database: [
+        {
+          src: "/images/skills/microsoft_sql_server.jpg",
+          tooltips: "MS Sql server",
+        },
+      ],
+      toolsIcon: [
+        {
+          src: "/images/skills/IIS.svg",
+          tooltips: "IIS",
+        },
+      ],
+    },
+    {
+      current: false,
       color: "orange",
       year: 2011,
-      icon: "mdi-star",
       title: "Soft Gear",
-      description: "test",
+      description: "",
+      lang: [
+        {
+          src: "/images/skills/c_sharp.svg",
+          tooltips: "C#",
+        },
+      ],
+      framework: [
+        {
+          src: "/images/skills/dotnet.svg",
+          tooltips: ".Net Framework",
+        },
+      ],
+      database: [
+        {
+          src: "/images/skills/microsoft_sql_server.jpg",
+          tooltips: "MS Sql server",
+        },
+      ],
+      toolsIcon: [
+        {
+          src: "/images/skills/IIS.svg",
+          tooltips: "IIS",
+        },
+      ],
     },
   ];
 }

@@ -19,7 +19,7 @@
       <v-row class="py-5" align="center" justify="center">
         <v-col cols="12">
           <p class="text-center">My name is Ken</p>
-          <p class="text-center">I'm lazy developer</p>
+          <p class="text-center">I'm little developer</p>
         </v-col>
       </v-row>
 
